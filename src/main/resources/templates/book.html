@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Book</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+		integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+	<section class="hero-section position-relative padding-large"
+		style="background-image: url(/images/banner-image-bg-1.jpg); background-size: cover; background-repeat: no-repeat; background-position: center; height: 400px;">
+		<div class="hero-content">
+			<div class="container">
+				<div class="row">
+					<div class="text-center">
+						<h1>Gian hàng sách</h1>
+						<div class="breadcrumbs">
+							<span class="item">
+								<a href="/">Trang chủ > </a>
+							</span>
+							<span class="item text-decoration-underline">Gian hàng sách</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="shopify-grid padding-large">
+			<div class="container">
+				<div class="row flex-row-reverse g-md-5">
+					<main class="col-md-9">
+						<div class="filter-shop d-flex flex-wrap justify-content-between mb-5">
+							<div class="showing-product">
+								<p>Hiển thị [[${totalElements}]] kết quả</p>
+							</div>
+							<div class="sort-by">
+								<form id="sortingForm" th:action="@{/books}" method="get">
+									<input type="hidden" name="pageNo" th:value="${pageNo}" />
+									<input type="hidden" name="pageSize" th:value="${pageSize}" />
+									<input type="hidden" name="category" th:value="${paramCategory}" />
+									<input type="hidden" name="publisher" th:value="${paramPublisher}" />
+
+									<!-- Select Box for Sorting -->
+									<select id="sorting" name="sortField" class="form-select"
+										onchange="document.getElementById('sortingForm').submit();"
+										style="width: 200px;">
+										<option value="" th:selected="${sortField == null}">Sắp xếp mặc định
+										</option>
+										<option value="bookName:asc"
+											th:selected="${sortField == 'bookName' && sortOrder == 'asc'}">Tên sách (A
+											- Z)</option>
+										<option value="bookName:desc"
+											th:selected="${sortField == 'bookName' && sortOrder == 'desc'}">Tên sách (Z
+											- A)</option>
+										<option value="discountPrice:asc"
+											th:selected="${sortField == 'discountPrice' && sortOrder == 'asc'}">Giá
+											(Thấp-Cao)</option>
+										<option value="discountPrice:desc"
+											th:selected="${sortField == 'discountPrice' && sortOrder == 'desc'}">Giá
+											(Cao-Thấp)</option>
+									</select>
+								</form>
+							</div>
+						</div>
+						<div class="row product-content product-store">
+							<th:block th:if="${booksSize >0}">
+
+								<div class="col-lg-3 col-md-4 mb-4" th:each="p:${books}">
+									<a th:href="@{'/book/'+${p.id}}">
+										<div class="card position-relative p-4 border rounded-3">
+
+											<div class="position-absolute">
+												<p class="bg-primary py-1 px-3 fs-6 text-white rounded-2">
+													-[[${p.discount}]]%
+
+												</p>
+											</div>
+											<!--										<img th:src="@{'/images/book_img/'+${p.image}}" class="img-fluid shadow-sm" alt="product item">-->
+											<!--										<img th:src="@{${p.image.startsWith('http') ? ${p.image} : '/images/book_img/' + ${p.image}}}" class="img-fluid shadow-sm" alt="product item">-->
+											<img th:src="@{${#strings.isEmpty(p.image) ? '/images/default-image.jpg' : (p.image.startsWith('http') ? p.image : '/images/book_img/' + p.image)}}"
+												class="img-fluid shadow-sm" alt="product item" style="height: 250px;">
+
+											<h6 class="mt-4 mb-0 fw-bold" style="												display: inline-block;
+												  width: 175px;
+												  white-space: nowrap;
+												  overflow: hidden;
+												  text-overflow: ellipsis;"><a
+													th:href="@{'/book/'+${p.id}}">[[${p.bookName}]]</a>
+											</h6>
+											<div class="review-content d-flex">
+												<p class="my-2 me-2 fs-6 text-black-50">[[${p.author}]]</p>
+
+
+											</div>
+											<div class="review-content d-flex">
+												<div class="rating-container" th:attr="data-rating=${p.averageRating}">
+												    <div class="rating">
+												        <span class="rating-unit "><i class="fa-solid fa-star" style="font-size: 15px;"></i></span>
+												        <span class="rating-unit "><i class="fa-solid fa-star" style="font-size: 15px;"></i></span>
+												        <span class="rating-unit "><i class="fa-solid fa-star" style="font-size: 15px;"></i></span>
+												        <span class="rating-unit "><i class="fa-solid fa-star" style="font-size: 15px;"></i></span>
+												        <span class="rating-unit "><i class="fa-solid fa-star" style="font-size: 15px;"></i></span>
+												    </div>
+												</div>
+
+											</div>
+											<div class="review-content d-flex">
+												<p class="my-2 me-2 fs-6 text-black-50">Đã bán: [[${p.sold}]]</p>
+
+
+											</div>
+											<div style="padding-top: 10px;">
+											    <span class="price text-primary fw-bold mb-2 fs-5" id="discountPrice">[[${p.discountPrice}]]</span>
+											    <del class="fs-6" style="padding-left: 5px;" id="originalPrice">[[${p.price}]]</del>
+											</div>
+											<div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
+												<!--<th:block th:if="${p.stock>0}">
+												<th:block th:if="${user==null}">
+													<a type="button" href="/signin" class="btn btn-dark"
+														data-bs-toggle="tooltip" data-bs-placement="top"
+														data-bs-title="Tooltip on top">
+														<svg class="cart">
+															<use xlink:href="#cart"></use>
+														</svg>
+													</a>
+
+												</th:block>
+												<th:block th:unless="${user==null}">
+													<a type="button"
+														th:href="@{'/user/addCart?pid='+${p.id}+'&uid='+${user.id}}"
+														class="btn btn-dark" data-bs-toggle="tooltip"
+														data-bs-placement="top" data-bs-title="Tooltip on top">
+														<svg class="cart">
+															<use xlink:href="#cart"></use>
+														</svg>
+													</a>
+
+												</th:block>
+											</th:block>
+											<th:block th:unless="${p.stock>0}">
+												<a type="button" class="btn btn-dark disabled-cart" style="												opacity: 0.5; /* Làm mờ nút */
+												   pointer-events: none; cursor: not-allowed !important;"
+												   data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Tooltip on top">
+												   <svg class="cart">
+												       <use xlink:href="#cart"></use>
+												   </svg>
+												</a>
+											</th:block>
+
+											<a th:href="@{'/user/addWishList?pid='+${p.id}+'&uid='+${user.id}}" class="btn btn-dark">
+												<span>
+													<svg class="wishlist">
+														<use xlink:href="#heart"></use>
+													</svg>
+												</span>
+											</a>-->
+											</div>
+										</div>
+									</a>
+								</div>
+							</th:block>
+							<th:block th:unless="${booksSize>0}">
+								<p class="fs-4 text-center mt-4 text-danger">Không tìm thấy sách</p>
+							</th:block>
+						</div>
+						<th:block th:if="${booksSize>0}">
+							<nav class="py-5" aria-label="Page navigation">
+								<ul class="pagination justify-content-center gap-4">
+									<li class="page-item" th:classappend="${isFirst} ? 'disabled':''">
+										<a class="page-link" th:href="@{'/books?pageNo='+${pageNo-1}}">&laquo;</a>
+									</li>
+									<li th:each="i:${#numbers.sequence(1,totalPages)}" class="page-item active"
+										th:classappend="${pageNo+1==i}?'active':''" ]] aria-current="page">
+										<a class="page-link" th:href="@{'/books?pageNo='+${i-1}}">[[${i}]]</a>
+									</li>
+
+									<li class="page-item" th:classappend="${isLast} ? 'disabled':''">
+										<a class="page-link" th:href="@{'/books?pageNo='+${pageNo+1}}">&raquo;</a>
+									</li>
+								</ul>
+							</nav>
+						</th:block>
+					</main>
+					<aside class="col-md-3">
+						<div class="sidebar ps-lg-5">
+							<div class="widget-menu">
+								<div class="widget-search-bar">
+									<form  method="get" action="/books" class="d-flex border rounded-3 p-2" role="search">
+										<input class="form-control border-0 me-2 py-2" type="search"
+											placeholder="Tìm kiếm" aria-label="Search" name="ch">
+										<button class="btn rounded-3 p-3 d-flex align-items-center" type="submit">
+											<svg class="search text-light" width="18" height="18">
+												<use xlink:href="#search"></use>
+											</svg>
+										</button>
+									</form>
+								</div>
+							</div>
+							<div class="widget-product-categories pt-5">
+								<div class="section-title overflow-hidden mb-2">
+									<h3 class="d-flex flex-column mb-0">Danh mục</h3>
+								</div>
+								<ul class="product-categories mb-0 sidebar-list list-unstyled">
+									<li class="cat-item">
+										<a href="/books" th:classappend="${paramValue==''} ? 'active':''">Tất cả
+											sách</a>
+									</li>
+									<li class="cat-item">
+										<a th:each="c:${categories}" th:href="@{'/books?category='+${c.name}}"
+											th:classappend="${paramValue == c.name} ? 'active':''" style="									display: block;  /* Đảm bảo mỗi <a> chiếm toàn bộ dòng */
+									    ">[[${c.name}]]</a>
+									</li>
+								</ul>
+							</div>
+							<div class="widget-product-tags pt-5">
+								<div class="section-title overflow-hidden mb-2">
+									<h3 class="d-flex flex-column mb-0">Nhà xuất bản</h3>
+								</div>
+								<ul class="product-tags mb-0 sidebar-list list-unstyled">
+									<li class="tags-item">
+										<a href="/books" th:classappend="${paramValue==''} ? 'active':''">Tất cả
+											sách</a>
+									</li>
+									<li class="tags-item">
+										<a th:each="pu:${publishers}" th:href="@{'/books?publisher='+${pu.name}}"
+											th:classappend="${paramValue == pu.name} ? 'active':''"
+											style="display: block;">[[${pu.name}]]</a>
+									</li>
+								</ul>
+							</div>
+							<!--<div class="widget-product-authur pt-5">
+								<div class="section-title overflow-hidden mb-2">
+									<h3 class="d-flex flex-column mb-0">authur</h3>
+								</div>
+								<ul class="product-tags mb-0 sidebar-list list-unstyled">
+									<li class="tags-item">
+										<a href="#">Hanna Clark</a>
+									</li>
+									<li class="tags-item">
+										<a href="#">Albert E. Beth</a>
+									</li>
+									<li class="tags-item">
+										<a href="#">D.K John</a>
+									</li>
+								</ul>
+							</div>-->
+							<div class="widget-price-filter pt-5">
+								<div class="section-title overflow-hidden mb-2">
+									<h3 class="d-flex flex-column mb-0">Lọc theo giá</h3>
+								</div>
+								<ul class="product-tags mb-0 sidebar-list list-unstyled">
+									<li class="tags-item">
+										<a th:href="@{'/books?priceRange=under100&pageNo=0'}">Dưới 100.000đ</a>
+									</li>
+									<li class="tags-item">
+										<a th:href="@{'/books?priceRange=100to200&pageNo=0'}">100.000đ - 200.000đ</a>
+									</li>
+									<li class="tags-item">
+										<a th:href="@{'/books?priceRange=200to300&pageNo=0'}">200.000đ - 300.000đ</a>
+									</li>
+									<li class="tags-item">
+										<a th:href="@{'/books?priceRange=300to400&pageNo=0'}">300.000đ - 400.000đ</a>
+									</li>
+									<li class="tags-item">
+										<a th:href="@{'/books?priceRange=400to500&pageNo=0'}">400.000đ - 500.000đ</a>
+									</li>
+									<li class="tags-item">
+										<a th:href="@{'/books?priceRange=above500&pageNo=0'}">Trên 500.000đ</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>
