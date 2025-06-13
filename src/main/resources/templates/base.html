@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
-
 <head>
     <title th:text="${title}">Book Library</title>
     <meta charset="utf-8">
@@ -21,9 +20,7 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;600&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <style>
         #feedbackButton {
             position: fixed;
@@ -144,9 +141,7 @@
             -webkit-text-fill-color: transparent;
         }
     </style>
-
 </head>
-
 <body>
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="search" xmlns="http://www.w3.org/2000/symbolsvg" viewBox="0 0 24 24">
@@ -248,14 +243,11 @@
     </symbol>
 </svg>
 
-
 <div class="search-popup">
     <div class="search-popup-container">
-
         <form role="search" method="get" class="search-form" action="/books">
             <input type="search" id="search-form" class="search-field" placeholder="Type and press enter" value=""
                    name="ch"/>
-
             <button type="submit" class="search-submit">
                 <svg class="search">
                     <use xlink:href="#search"></use>
@@ -276,7 +268,6 @@
         </div>
 
         <!--<h5 class="cat-list-title">Browse Categories</h5>
-
         <ul class="cat-list">
             <li class="cat-list-item">
                 <a href="#" title="Romance">Romance</a>
@@ -300,7 +291,6 @@
                 <a href="#" title="Fiction">Fiction</a>
             </li>
         </ul>-->
-
     </div>
 </div>
 
@@ -399,7 +389,6 @@
                     </ul>
                     <div class="user-items d-flex">
                         <ul class="d-flex justify-content-end list-unstyled mb-0">
-
                             <li class="search-item pe-3">
                                 <a href="#" class="search-button">
                                     <svg class="search">
@@ -409,15 +398,11 @@
                             </li>
                             <th:block th:if="${user==null}">
                                 <li class="pe-3">
-
                                     <a href="/signin" data-bs-target="#exampleModal">
                                         <i class="fas fa-user " style="font-size: 17px;  padding-top: 7px;"></i>
                                         <!-- Biểu tượng đăng ký -->
                                     </a>
-
-
                                 </li>
-
 
                                 <a href="/register" data-bs-target="#exampleModal">
                                     <i class="fas fa-user-plus "
@@ -425,7 +410,6 @@
                                     <!-- Biểu tượng đăng ký -->
                                 </a>
                             </th:block>
-
 
                             </li>
                             <th:block th:if="${user!=null}">
@@ -493,7 +477,6 @@
 												[[${countCart}]]
 											</span>
                                     </a>
-
                                 </li>
 
                                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle active" href="#"
@@ -506,8 +489,6 @@
                                         <li><a class="dropdown-item" href="/user/profile">Hồ sơ</a></li>
                                         <li><a class="dropdown-item" href="/user/user-orders">Đơn hàng của tôi</a>
                                         </li>
-
-
                                     </ul>
                                 </li>
 
@@ -515,8 +496,6 @@
                                     <i class="fas fa-sign-out-alt" style="font-size: 24px;"></i>
                                     <!-- Biểu tượng logout -->
                                 </a>
-
-
                             </th:block>
                         </ul>
                     </div>
@@ -524,11 +503,8 @@
             </div>
         </div>
     </nav>
-
 </header>
-
 <div th:replace="${content}"></div>
-
 <section id="customers-reviews" class="position-relative padding-large"
          style="background-image: url(/images/banner-image-bg.jpg); background-size: cover; background-repeat: no-repeat; background-position: center; height: 600px;">
     <div class="container offset-md-3 col-md-6 ">
@@ -557,7 +533,6 @@
                         <h5 class="mt-1 fw-normal">[[${feedback.name}]]</h5>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

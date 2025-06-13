@@ -3,14 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-
 	<title th:text="${title}">View Book</title>
-
-
 </head>
-
 <body>
-
 	<section class="hero-section position-relative padding-large"
 		style="background-image: url(/images/banner-image-bg-1.jpg); background-size: cover; background-repeat: no-repeat; background-position: center; height: 400px;">
 		<div class="hero-content">
@@ -37,24 +32,31 @@
 					<div class="col-lg-6">
 						<h3 class="mb-3">Chi tiết thanh toán</h3>
 						<div class="billing-details">
-							<label for="fname">Họ*</label>
-							<input type="text" id="lname" name="lastName" class="form-control mt-2 mb-4 ps-3">
-							<label for="lname">Tên*</label>
-							<input type="text" id="fname" name="firstName" class="form-control mt-2 mb-4 ps-3">
+							<label for="fname">Họ <span class="text-danger">*</span></label>
+							<input type="text" id="lname" name="lastName" class="form-control mt-2 mb-4 ps-3" required>
 
+							<label for="lname">Tên <span class="text-danger">*</span></label>
+							<input type="text" id="fname" name="firstName" class="form-control mt-2 mb-4 ps-3" required>
 
+							<label for="address">Địa chi (số nhà)̉ <span class="text-danger">*</span></label>
+							<input type="text" id="adr" name="address" class="form-control mt-3 ps-3 mb-3" required>
 
-							<label for="address">Địa chỉ *</label>
-							<input type="text" id="adr" name="address" class="form-control mt-3 ps-3 mb-3">
+							<label for="district">Quận/Huyện <span class="text-danger">*</span></label>
+							<input type="text" id="district" name="district" class="form-control mt-3 ps-3 mb-4" required>
 
-							<label for="district">Quận / Huyện *</label>
-							<input type="text" id="district" name="district" class="form-control mt-3 ps-3 mb-4">
-							<label for="city">Tỉnh/Thành phố *</label>
-							<input type="text" id="city" name="city" class="form-control mt-2 mb-4 ps-3">
-							<label for="phone">Số điện thoại *</label>
-							<input type="text" id="phone" name="mobileNo" class="form-control mt-2 mb-4 ps-3">
-							<label for="email">Email *</label>
-							<input type="text" id="email" name="email" class="form-control mt-2 mb-4 ps-3">
+							<label for="city">Tỉnh/Thành phố <span class="text-danger">*</span></label>
+							<input type="text" id="city" name="city" class="form-control mt-2 mb-4 ps-3" required>
+
+							<label for="phone">Số điện thoại <span class="text-danger">*</span></label>
+							<input type="tel" id="phone" name="mobileNo"
+								   pattern="^(0|\+84)[0-9]{9}$"
+								   inputmode="numeric"
+								   title="Số điện thoại phải bắt đầu bằng 0 hoặc +84 và có 10 chữ số"
+								   oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+								   class="form-control mt-2 mb-4 ps-3" required>
+
+							<label for="email">Email <span class="text-danger">*</span></label>
+							<input type="email" id="email" name="email" class="form-control mt-2 mb-4 ps-3" required>
 						</div>
 					</div>
 					<div class="col-lg-6">
@@ -102,13 +104,13 @@
 									</tbody>
 								</table>
 							</div>
+
 							<div class="list-group">
 								<label class="list-group-item d-flex gap-2 border-0">
 									<input class="form-check-input flex-shrink-0" type="radio" 
 										 name="paymentType" value="vnpay" required>
 									<span>
-										<p class="mb-1">Thanh toán qua ví VN Pay</p>
-
+										<p class="mb-1">Thanh toán qua ví VNPay</p>
 									</span>
 								</label>
 								<label class="list-group-item d-flex gap-2 border-0">
@@ -116,104 +118,18 @@
 										name="paymentType" value="COD" required>
 									<span>
 										<p class="mb-1">Thanh toán khi nhận hàng</p>
-
 									</span>
-
+								</label>
 							</div>
+
 							<div class="button-wrap mt-3">
 								<button type="submit" name="submit" class="btn">Đặt hàng</button>
 							</div>
 						</div>
-
 					</div>
-
 				</div>
 			</form>
 		</div>
 	</section>
-
-	<section id="instagram">
-		<div class="container">
-			<div class="text-center mb-4">
-				<h3>Instagram</h3>
-			</div>
-			<div class="row">
-				<div class="col-md-2">
-					<figure class="instagram-item position-relative rounded-3">
-						<a href="https://templatesjungle.com/" class="image-link position-relative">
-							<div class="icon-overlay position-absolute d-flex justify-content-center">
-								<svg class="instagram">
-									<use xlink:href="#instagram"></use>
-								</svg>
-							</div>
-							<img src="images/insta-item1.jpg" alt="instagram" class="img-fluid rounded-3 insta-image">
-						</a>
-					</figure>
-				</div>
-				<div class="col-md-2">
-					<figure class="instagram-item position-relative rounded-3">
-						<a href="https://templatesjungle.com/" class="image-link position-relative">
-							<div class="icon-overlay position-absolute d-flex justify-content-center">
-								<svg class="instagram">
-									<use xlink:href="#instagram"></use>
-								</svg>
-							</div>
-							<img src="images/insta-item2.jpg" alt="instagram" class="img-fluid rounded-3 insta-image">
-						</a>
-					</figure>
-				</div>
-				<div class="col-md-2">
-					<figure class="instagram-item position-relative rounded-3">
-						<a href="https://templatesjungle.com/" class="image-link position-relative">
-							<div class="icon-overlay position-absolute d-flex justify-content-center">
-								<svg class="instagram">
-									<use xlink:href="#instagram"></use>
-								</svg>
-							</div>
-							<img src="images/insta-item3.jpg" alt="instagram" class="img-fluid rounded-3 insta-image">
-						</a>
-					</figure>
-				</div>
-				<div class="col-md-2">
-					<figure class="instagram-item position-relative rounded-3">
-						<a href="https://templatesjungle.com/" class="image-link position-relative">
-							<div class="icon-overlay position-absolute d-flex justify-content-center">
-								<svg class="instagram">
-									<use xlink:href="#instagram"></use>
-								</svg>
-							</div>
-							<img src="images/insta-item4.jpg" alt="instagram" class="img-fluid rounded-3 insta-image">
-						</a>
-					</figure>
-				</div>
-				<div class="col-md-2">
-					<figure class="instagram-item position-relative rounded-3">
-						<a href="https://templatesjungle.com/" class="image-link position-relative">
-							<div class="icon-overlay position-absolute d-flex justify-content-center">
-								<svg class="instagram">
-									<use xlink:href="#instagram"></use>
-								</svg>
-							</div>
-							<img src="images/insta-item5.jpg" alt="instagram" class="img-fluid rounded-3 insta-image">
-						</a>
-					</figure>
-				</div>
-				<div class="col-md-2">
-					<figure class="instagram-item position-relative rounded-3">
-						<a href="https://templatesjungle.com/" class="image-link position-relative">
-							<div class="icon-overlay position-absolute d-flex justify-content-center">
-								<svg class="instagram">
-									<use xlink:href="#instagram"></use>
-								</svg>
-							</div>
-							<img src="images/insta-item6.jpg" alt="instagram" class="img-fluid rounded-3 insta-image">
-						</a>
-					</figure>
-				</div>
-			</div>
-		</div>
-	</section>
-
 </body>
-
 </html>

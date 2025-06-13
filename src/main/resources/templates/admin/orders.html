@@ -15,7 +15,7 @@
 
 <body>
 	<section>
-		<div class="container-fluid mt-5 p-1">
+		<div class="container-fluid mt-5 p-1" style="width: 90%">
 			<div class="row">
 				<p class="text-center fs-3 mt-2">Quản lý đơn hàng</p>
 				<hr>
@@ -64,22 +64,14 @@
 									<tr>
 										<th scope="row">[[${orderDtls.orderId}]]</th>
 
-										<td>[[${orderDtls.orderAddress.lastName+'
-											'+orderDtls.orderAddress.firstName}]]<br> Email :
-											[[${orderDtls.orderAddress.email}]] <br> SĐT:
-											[[${orderDtls.orderAddress.mobileNo}]]
-
-
-
+										<td><br>Họ tên: [[${orderDtls.orderAddress.lastName+' '+orderDtls.orderAddress.firstName}]]
+											<br> Email: [[${orderDtls.orderAddress.email}]]
+											<br> SĐT: [[${orderDtls.orderAddress.mobileNo}]]
 										</td>
 										<td>
 											[[${orderDtls.orderAddress.address}]],
 											[[${orderDtls.orderAddress.district}]],
 											[[${orderDtls.orderAddress.city}]]
-
-
-
-
 										</td>
 										<td>[[${orderDtls.formattedOrderDate}]] </td>
 										<td>

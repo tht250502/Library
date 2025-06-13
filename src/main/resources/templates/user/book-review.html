@@ -5,11 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Đánh Giá Sản Phẩm</title>
-
 	<!-- Bootstrap CSS -->
-
-
-
 </head>
 
 <body>
@@ -56,7 +52,6 @@
 					<h5 class="card-title">Đánh giá sản phẩm</h5>
 					<h3 th:text="${averageRating} + '/5'">Chưa có đánh giá</h3>
 				</div>
-
 			</div>
 
 			<!-- Danh Sách Đánh Giá -->
@@ -103,13 +98,8 @@
 								        justify-content: center;
 								        color: white;"></i>
 										<strong th:text="${rating.user.name}" style="display: inline-flex; align-items: center; margin-left: 8px; vertical-align: middle;"></strong>
-										
 								</span>
-
 								<!-- Tên người dùng -->
-								
-
-
 							<!-- Dòng 2: Hiển thị sao theo số lượng điểm -->
 							<div class="custom-rating-stars">
 								<span class="custom-star"
@@ -123,7 +113,6 @@
 								<span class="custom-star"
 									th:class="${rating.score >= 5 ? 'highlightedhh' : ''}">&#9733;</span>
 							</div>
-
 							<!-- Dòng 3: Bình luận -->
 							<p th:text="${rating.review}" style="							
 							   border: 1px solid #ddd; /* Viền mỏng màu xám */
@@ -137,14 +126,8 @@
 					</ul>
 				</div>
 			</div>
-
 		</div>
 	</section>
-
 	<!-- Bootstrap JS và Popper.js -->
-
-
-
 </body>
-
 </html>

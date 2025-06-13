@@ -46,16 +46,18 @@
 							</form>
 
 							<hr style="margin-bottom: 8px">
+							<hr style="margin-bottom: 8px; color: #4A4A4A">
 							<h5 class="text-center mt-3"style="color: black;">Thêm sách thủ công</h5>
 							<form action="/admin/saveBook" method="post" enctype="multipart/form-data" style="color: black;">
 								<div class="mb-3" >
-									<label>Tên sách</label> <input type="text" name="bookName" class="form-control">
+									<label>Tên sách <span class="text-danger">*</span></label>
+									<input type="text" name="bookName" class="form-control" required>
 								</div>
 
 								<div class="mb-3">
-									<label>Tác giả</label> <input type="text" name="author" class="form-control">
+									<label>Tác giả <span class="text-danger">*</span></label>
+									<input type="text" name="author" class="form-control" required>
 								</div>
-
 
 								<div class="mb-3">
 									<label>Miêu tả sách</label>
@@ -63,48 +65,44 @@
 								<textarea name="description" id="description" rows="10" cols="80"></textarea>
 								</div>
 
-
 								<div class="mb-3">
 									<label>Danh mục</label> <select class="form-control" name="category">
-										<option>--select--</option>
+										<option>Chọn danh mục</option>
 										<option th:each="c:${categories}">[[${c.name}]]</option>
 									</select>
 								</div>
 
 								<div class="mb-3">
 									<label>Nhà xuất bản</label> <select class="form-control" name="publisher">
-										<option>--select--</option>
+										<option>Chọn NXB</option>
 										<option th:each="p:${publishers}">[[${p.name}]]</option>
 									</select>
 								</div>
 
 								<div class="mb-3">
-									<label>Giá niêm yết</label> <input type="number" name="price"
-										class="form-control">
+									<label>Giá niêm yết <span class="text-danger">*</span></label>
+									<input type="number" name="price" class="form-control" min="1" required>
 								</div>
 
 								<div class="mb-3">
-									<label>Giảm giá</label> <input type="number" name="discount"
-										class="form-control">
+									<label>Giảm giá (%) <span class="text-danger">*</span></label>
+									<input type="number" name="discount" class="form-control" min="0" max="100" required>
 								</div>
 
 								<div class="mb-3">
-									<label>Số lượng</label> <input type="number" name="stock" class="form-control">
+									<label>Số lượng <span class="text-danger">*</span></label>
+									<input type="number" name="stock" class="form-control" min="1" required>
 								</div>
 								<div class="mb-3">
 									<label>Trạng thái</label>
 
 									<div class="form-check">
-										<input class="form-check-input" type="radio" checked value="true"
-											name="isActive" id="flexRadioDefault1">
-										<label class="form-check-label" for="flexRadioDefault1">
-											Tồn tại </label>
+										<input class="form-check-input" type="radio" checked value="true" name="isActive" id="flexRadioDefault1">
+										<label class="form-check-label" for="flexRadioDefault1">Tồn tại </label>
 									</div>
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="isActive" value="false"
-											id="flexRadioDefault2"> <label class="form-check-label"
-											for="flexRadioDefault2">
-											Không tồn tại </label>
+										<input class="form-check-input" type="radio" name="isActive" value="false" id="flexRadioDefault2">
+										<label class="form-check-label" for="flexRadioDefault2">Không tồn tại </label>
 									</div>
 
 								</div>
@@ -127,6 +125,31 @@
 			</div>
 		</div>
 	</section>
+
+	<script>
+		function validateForm() {
+			const price = document.querySelector('input[name="price"]').value;
+			const discount = document.querySelector('input[name="discount"]').value;
+			const stock = document.querySelector('input[name="stock"]').value;
+
+			if (price <= 0) {
+				alert("Giá niêm yết phải lớn hơn 0.");
+				return false;
+			}
+
+			if (discount < 0 || discount > 100) {
+				alert("Giảm giá phải trong khoảng từ 0 đến 100.");
+				return false;
+			}
+
+			if (stock <= 0) {
+				alert("Số lượng phải lớn hơn 0.");
+				return false;
+			}
+
+			return true;
+		}
+	</script>
 </body>
 
 </html>

@@ -19,7 +19,6 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
 
     @Column(length = 500)
@@ -27,33 +26,30 @@ public class Book {
 
     @Column(length = 5000)
     private String description;
-
     private String author;
-
     private String category;
-
     private String publisher;
-
     private Integer price;
-
     private int stock;
-
     private String image;
-
     private int discount;
-
     private Integer discountPrice;
-
     private String isbn;
-
     private Boolean isActive;
-
     private LocalDateTime createdDate;
-
     private int sold = 0;
+    private double averageRating;
+    private String formattedPrice;
+    private String formattedDiscountPrice;
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookOrderItem> orderItems = new ArrayList<>();
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cart> carts = new ArrayList<>();
 
     public void calculateDiscountPrice() {
         if (price != null && discount >= 0 && discount <= 100) {
@@ -62,11 +58,4 @@ public class Book {
             this.discountPrice = this.price;
         }
     }
-
-    private double averageRating;
-
-    private String formattedPrice;
-
-    private String formattedDiscountPrice;
-
 }

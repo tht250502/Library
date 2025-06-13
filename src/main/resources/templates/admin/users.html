@@ -8,6 +8,7 @@
 
 <body>
 	<section>
+
 		<div class="container-fluid mt-5 p-5">
 			<div class="col" style="text-align: right;  " th:if="${userType==2}">
 				<a href="/admin/add-admin" class="btn btn-sm btn-primary"
@@ -17,7 +18,10 @@
 			<div class="card card-sh">
 				<div class="card-header text-center" style="color: black;">
 					<p class="fs-4" th:if="${userType==1}">Quản lý người dùng</p>
-					<p class="fs-4" th:if="${userType==2}">Quản lý thành viên</p>
+					<p class="fs-4" th:if="${userType==2}">Quản lý quản trị viên</p>
+					<hr>
+					<a href="/admin/" class="text-decoration-none" style="margin-left: 10px; float: left"><i
+							class="fa-solid fa-arrow-left"></i> Trở lại</a>
 					<th:block th:if="${session.succMsg}">
 						<p class="text-success fw-bold">[[${session.succMsg}]]</p>
 						<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>

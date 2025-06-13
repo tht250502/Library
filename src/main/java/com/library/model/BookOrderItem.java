@@ -18,23 +18,20 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookOrderItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "book_order_id", nullable = false)
-    private BookOrder bookOrder;  // Liên kết với BookOrder (đơn hàng)
+    private BookOrder bookOrder;
 
     @ManyToOne
     @JoinColumn(name = "book_id", nullable = false)
-    private Book book;  // Liên kết với Book (sách)
+    private Book book;
 
-
-    private Integer quantity;  // Số lượng sách
-
-    private Integer price;  // Giá sách
+    private Integer quantity;
+    private Integer price;
 
     public BookOrderItem(BookOrder bookOrder, Book book, Integer quantity, Integer price) {
         this.bookOrder = bookOrder;

@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/admin/bases::layout(~{::section})}">
-
 <head>
 	<meta charset="UTF-8">
-
-
-
 </head>
-
 <body>
 	<section>
 		<nav id="sidebar">
-
-			<div class="management-title">QUẢN LÝ</div> <!-- Chữ QUẢN LÝ ở đây -->
+			<div class="management-title" style="margin-top: 15px">QUẢN LÝ</div>
 			<a href="/admin/users?type=1">Quản lý người dùng</a>
-			<a href="/admin/users?type=2">Quản lý thành viên</a>
+			<a href="/admin/users?type=2">Quản lý quản trị viên</a>
 			<a href="/admin/category">Quản lý danh mục</a>
 			<a href="/admin/publisher">Quản lý NXB</a>
 			<a href="/admin/view_admin_book">Quản lý Sách</a>
 			<a href="/admin/orders">Quản lý đơn hàng</a>
 			<a href="/admin/feedback_list">Danh sách phản hồi</a>
 			<a href="/admin/admin_blog_list">Quản lý bài đăng</a>
-
 		</nav>
 		<div id="content" class="content-wrapper">
 			<div class="container ">
@@ -31,7 +24,7 @@
 					<div class="col-md-3">
 						<div class="card card-blue">
 							<div class="card-body">
-								<h7 class="card-title">TỔNG SỐ ĐƠN HÀNG (3)</h5>
+								<h7 class="card-title">TỔNG SỐ ĐƠN HÀNG</h7>
 									<hr style="border-top: 2px solid black;">
 									<a href="#" class="btn btn-light btn-sm">Chi tiết &gt;</a>
 							</div>
@@ -40,7 +33,7 @@
 					<div class="col-md-3">
 						<div class="card card-yellow">
 							<div class="card-body">
-								<h7 class="card-title">ĐÁNH GIÁ (15)</h5>
+								<h7 class="card-title">ĐÁNH GIÁ</h7>
 									<hr style="border-top: 2px solid black;">
 									<a href="#" class="btn btn-light btn-sm">Chi tiết &gt;</a>
 							</div>
@@ -49,7 +42,7 @@
 					<div class="col-md-3">
 						<div class="card card-green">
 							<div class="card-body">
-								<h7 class="card-title">SẢN PHẨM (6)</h5>
+								<h7 class="card-title">SẢN PHẨM</h7>
 									<hr style="border-top: 2px solid black;">
 									<a href="#" class="btn btn-light btn-sm">Chi tiết &gt;</a>
 							</div>
@@ -58,7 +51,7 @@
 					<div class="col-md-3">
 						<div class="card card-red">
 							<div class="card-body">
-								<h7 class="card-title">THÀNH VIÊN (13)</h1>
+								<h7 class="card-title">THÀNH VIÊN</h7>
 									<hr style="border-top: 2px solid black;">
 									<a href="#" class="btn btn-light btn-sm">Chi tiết &gt;</a>
 							</div>
@@ -93,12 +86,9 @@
 					                    <input type="date" id="endDate" style="padding: 8px; font-size: 14px; margin-right: 5px;">
 					                </div>
 					            </div>
-								
 					        </div>
 							<canvas id="orderStatusChart" width="300" height="300"></canvas>
 					    </div>
-
-					    
 				</div>
 				<div>
 					<div class="container" style="padding-top: 40px;">
@@ -107,13 +97,14 @@
 					</div>
 					<canvas id="dailyRevenueChart"></canvas>
 				</div>
-
 			</div>
+		</div>
 			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 			<link rel="stylesheet"
 				href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 			<script
 				src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<!--		</div>-->
 	</section>
 </body>
 

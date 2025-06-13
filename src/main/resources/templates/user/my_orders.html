@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
-
 <head>
 	<meta charset="UTF-8">
-
 	<title th:text="${title}">View Book</title>
-	
-
-
-
 </head>
-
 <body>
-	
 	<section class="hero-section position-relative padding-large"
 			style="background-image: url(/images/banner-image-bg-1.jpg); background-size: cover; background-repeat: no-repeat; background-position: center; height: 400px;">
 			<div class="hero-content">
@@ -35,7 +27,6 @@
 	<section>
 		<div class="container mt-5 p-5">
 			<div class="row">
-				
 				<th:block th:if="${session.succMsg}">
 					<p class="text-success fw-bold text-center">[[${session.succMsg}]]</p>
 					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
@@ -45,8 +36,8 @@
 					<p class="text-danger fw-bold text-center">[[${session.errorMsg}]]</p>
 					<th:block th:text="${@commnServiceImpl.removeSessionMessage()}"></th:block>
 				</th:block>
-				<div class="col-md-12 ">
 
+				<div class="col-md-12 ">
 					<table class="table table-bordered card-sh">
 						<thead>
 							<tr>
@@ -85,10 +76,7 @@
 					</table>
 				</div>
 			</div>
-
 		</div>
 	</section>
-
 </body>
-
 </html>
